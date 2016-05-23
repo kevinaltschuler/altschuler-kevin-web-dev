@@ -1,12 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="http://www.w3schools.com/lib/w3data.js"></script>
+    <meta charset="UTF-8">
+    <title>Web Dev Course Home Page</title>
+    <link rel="stylesheet" type="text/css" href="./css/styles.css" />
 </head>
+
 <body>
-    <div w3-include-html="./home/html/index.html"></div>
+    <div class="main-div" id="main-div">
+        <div class="container">
+            <div class="nav">
+                <div>Web Dev Course Home Page</div>
+            </div>
+
+            <h2>Required links</h2>
+            <ul>
+                <li>
+                    <a href="project/index.html">Project</a>
+                </li>
+                <li>
+                    <a href="assignment/index.html">Assignment</a>
+                </li>
+                <li>
+                    <a href="test/index.html">Test MongoDB</a>
+                </li>
+                <li>
+                    <a href="#">Your public repository at GitHub.com</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
     <script>
-        w3IncludeHTML();
+        document.addEventListener('DOMContentLoaded', function() {
+            var i = 0;
+            setInterval(() => {
+                i = (i+1)%9;
+                console.log(i);
+                document.getElementById("main-div").style.backgroundImage = "url(./img/"+i+".jpg)";
+            }, 
+            3000);
+        }, false);
     </script>
 </body>
 </html>
