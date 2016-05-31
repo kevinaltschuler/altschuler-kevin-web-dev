@@ -41,9 +41,28 @@
 
     function EditWebsiteController($location, $routeParams, WebsiteService) {
         var vm = this;
-        vm.userId = $routeParams.userId;
-        vm.websiteId = $routeParams.websiteId;
-        vm.deleteWebsite = deleteWebsite;
+        var userId = $routeParams.userId;
+        var websiteId = $routeParams.websiteId;
+        var deleteWebsite = deleteWebsite;
+
+        function init() {
+            vm.website = WebsiteService.findWebsiteById(websiteId);
+            console.log(websiteId);
+            vm.userId = userId;
+            vm.websiteId = websiteId;
+            vm.deleteWebsite = deleteWebsite;
+        }
+        init();
+
+        vm.updateWebsite = function(websiteId, website) {
+            WebsiteService.updateWebsite(websiteId, website);
+            $location.url("/user/"+vm.userId+"/website");
+        }
+
+        vm.deleteWebsite = function(websiteId) {
+            WebsiteService.deleteWebsite(websiteId);
+            $location.url("/user/"+vm.userId+"/website");
+        }
 
         function deleteWebsite(websiteId) {
             var result = WebsiteService.deleteWebsite(websiteId);

@@ -36,7 +36,7 @@
         }
     }
 
-    function NewPageController($routeParams, PageService) {
+    function NewPageController($location, $routeParams, PageService) {
         var vm = this;
         var websiteId = $routeParams.wid;
         var userId = $routeParams.uid;
@@ -59,21 +59,40 @@
             var id = urlParts[urlParts.length - 1];
             return $sce.trustAsResourceUrl(url);
         }
+
+        vm.createPage = function(websiteId, name) {
+            var page = {name: name, _id: (new Date()).getTime()+""}
+            PageService.createPage(websiteId, page);
+            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+        }
     }
 
-    function EditPageController($routeParams, PageService) {
+    function EditPageController($location, $routeParams, PageService) {
         var vm = this;
         var websiteId = $routeParams.wid;
         var userId = $routeParams.uid;
+        var pageId = $routeParams.pid;
         vm.getSafeHtml = getSafeHtml;
         vm.getSafeUrl = getSafeUrl;
 
         function init() {
-            vm.pages = PageService.findPageByWebsiteId(websiteId);
+            vm.page = PageService.findPageById(pageId);
             vm.websiteId = websiteId;
             vm.userId = userId;
+            vm.pageId = pageId;
         }
         init();
+
+        vm.updatePage = function(pageId, page) {
+            console.log(page)
+            PageService.updatePage(pageId, page);
+            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+        }
+
+        vm.deletePage = function(pageId) {
+            PageService.deletePage(pageId);
+            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+        }
 
         function getSafeHtml(widget) {
             return $sce.trustAsHtml(widget.text);

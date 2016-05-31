@@ -18,6 +18,7 @@
         vm.userId = $routeParams["userId"];
         function init() {
                 vm.user = UserService.findUserById(vm.userId);
+                console.log(vm.user);
         }
         init();
 
@@ -31,13 +32,12 @@
         }
 
         function updateUser(newUser) {
-            console.log(newUser);
             users[index].firstName = newUser.firstName;
             users[index].lastName = newUser.lastName;
         }
     }
 
-    function LoginController($location) {
+    function LoginController($location, UserService) {
         var vm = this;
 
         vm.login = function(username, password) {
@@ -51,6 +51,12 @@
                     vm.error = "User not found";
                 }
             }
+        }
+
+        vm.register = function(username, password) {
+            var id = (new Date()).getTime()+"";
+            UserService.createUser({username: username, password: password, _id: id});
+            $location.url("/profile/"+id);
         }
 
     }

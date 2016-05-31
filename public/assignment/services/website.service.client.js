@@ -17,7 +17,7 @@
             createWebsite: createWebsite,
             findWebsitesByUser: findWebsitesByUser,
             deleteWebsite: deleteWebsite,
-            findWebsitesById: findWebsitesById,
+            findWebsiteById: findWebsiteById,
             updateWebsite: updateWebsite
 
         };
@@ -54,14 +54,8 @@
             return resultSet;
         }
 
-        function findWebsitesById(websiteId) {
-            var resultSet = [];
-            for(var i in websites) {
-                if(websites[i]._id === websiteId) {
-                    resultSet.push(websites[i]);
-                }
-            }
-            return resultSet;
+        function findWebsiteById(websiteId) {
+            return _.find(websites, function(website) { return website._id == websiteId });
         }
 
         function updateWebsite(websiteId, website) {

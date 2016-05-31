@@ -41,7 +41,8 @@
 
         function updatePage(pageId, $page) {
             var page = _.find(pages, function(page){ return page._id == pageId; });
-            page.name = $page.name;
+            if(page)
+                page = $page;
         }
 
         function deletePage(pageId) {

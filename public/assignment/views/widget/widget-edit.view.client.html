@@ -13,7 +13,7 @@
                 Widget Edit
             </a>
             <p class="navbar-text pull-right">
-                <a href="widget-list.html" class="navbar-link">
+                <a ng-click="model.updateWidget(model.widget)" class="navbar-link">
                   <span class="glyphicon glyphicon-ok">
                   </span>
                 </a>
@@ -42,7 +42,15 @@
                              class="form-control"
                              id="website-name"
                              placeholder="Page Title"
-                             ng-mogel="model.widget.title">
+                             ng-model="model.widget.text">
+                  </div>
+                  <div class="form-group">
+                      <label for="widget-description">size (1-6)</label>
+                      <input type="number"
+                             class="form-control"
+                             id="header-size"
+                             placeholder="1"
+                             ng-model="model.widget.size">
                   </div>
               </form>
             </div>
@@ -52,26 +60,30 @@
                     <label for="website-name">Name</label>
                     <input type="text"
                            class="form-control"
-                           id="website-name">
+                           id="website-name"
+                           ng-model="model.widget.name">
                 </div>
                 <div class="form-group">
                     <label for="website-description">Text</label>
                     <input type="text"
                            class="form-control"
-                           id="website-name">
+                           id="website-name"
+                           ng-model="model.widget.text">
                 </div>
                 <div class="form-group">
                     <label for="website-description">Url</label>
                     <input type="text"
                            class="form-control"
-                           value="https://www.facebook.com/nytimes/videos/10150812214919999/">
+                           value="https://www.facebook.com/nytimes/videos/10150812214919999/"
+                           ng-model="model.widget.url">
                 </div>
                 <div class="form-group">
                     <label for="website-description">Width</label>
                     <input type="text"
                            class="form-control"
                            id="website-name"
-                           value="100%">
+                           value="100%"
+                           ng-model="model.widget.width">
                 </div>
                 <div class="form-group">
                     <label for="website-description">Upload</label>
@@ -90,26 +102,30 @@
                       <label for="website-name">Name</label>
                       <input type="text"
                              class="form-control"
-                             id="website-name">
+                             id="website-name"
+                             ng-model="model.widget.name">
                   </div>
                   <div class="form-group">
                       <label for="website-description">Text</label>
                       <input type="text"
                              class="form-control"
-                             id="website-name">
+                             id="website-name"
+                             ng-model="model.widget.text">
                   </div>
                   <div class="form-group">
                       <label for="website-description">Url</label>
                       <input type="text"
                              class="form-control"
-                             value="https://www.youtube.com/embed/aD4grQXZPfg">
+                             value="https://www.youtube.com/embed/aD4grQXZPfg"
+                             ng-model="model.widget.url">
                   </div>
                   <div class="form-group">
                       <label for="website-description">Width</label>
                       <input type="text"
                              class="form-control"
                              id="website-name"
-                             value="100%">
+                             value="100%"
+                             ng-model="model.widget.width">
                   </div>
               </form>
             </div>
@@ -119,7 +135,7 @@
         </div>
 
         <a class="btn btn-danger  btn-block"
-           href="widget-list.html">Delete</a>
+           ng-click="model.deleteWidget(model.widget._id)">Delete</a>
     </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
@@ -132,7 +148,7 @@
             <div class="col-xs-3 text-center">
             </div>
             <div class="col-xs-3 text-center">
-                <a href="/assignment/user/profile.html">
+                <a href="#/profile/{{model.userId}}">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>

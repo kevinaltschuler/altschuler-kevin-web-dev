@@ -13,7 +13,7 @@
                 Edit Website
             </div>
             <p class="navbar-text pull-right">
-                <a ng-click="" class="navbar-link">
+                <a ng-click="model.updateWebsite(model.website._id, model.website)" class="navbar-link">
                   <span class="glyphicon glyphicon-ok">
                   </span>
                 </a>
@@ -30,9 +30,8 @@
                 <input type="text"
                        class="form-control"
                        id="website-name"
-                       value="Apple"
                        placeholder="Google"
-                       ng-model="model.website.name">
+                       ng-model="model.website.name"/>
             </div>
             <div class="form-group">
                 <label for="website-description">Website Description</label>
@@ -40,12 +39,12 @@
                           id="website-description"
                           class="form-control"
                           placeholder="Description"
-                          ng-model="model.website.description">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</textarea>
+                          ng-model="model.website.description"></textarea>
             </div>
         </form>
 
         <a class="btn btn-danger  btn-block"
-           href="website-list.html">Delete</a>
+           ng-click="model.deleteWebsite(model.website._id)">Delete</a>
     </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
@@ -58,7 +57,7 @@
             <div class="col-xs-3 text-center">
             </div>
             <div class="col-xs-3 text-center">
-                <a href="/assignment/user/profile.html">
+                <a href="#/profile/{{model.userId}}">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>

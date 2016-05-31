@@ -55,7 +55,7 @@
         }
     }
 
-    function NewWidgetController($sce, $routeParams, WidgetService) {
+    function NewWidgetController($location, $sce, $routeParams, WidgetService) {
         var vm = this;
         var pageId = $routeParams.pid;
         vm.getSafeHtml = getSafeHtml;
@@ -82,9 +82,16 @@
             return $sce.trustAsResourceUrl(url);
 
         }
+
+        vm.createWidget = function(pageId, type) {
+            var wgId = (new Date()).getTime()+"";
+            console.log(type);
+            WidgetService.createWidget(pageId, { "_id": wgId, "widgetType": type, "pageId": pageId});
+            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+wgId);
+        }
     }
 
-    function EditWidgetController($sce, $routeParams, WidgetService) {
+    function EditWidgetController($location, $sce, $routeParams, WidgetService) {
         var vm = this;
         var pageId = $routeParams.pid;
         vm.getSafeHtml = getSafeHtml;
@@ -102,6 +109,16 @@
             console.log(vm.widgetId);
         }
         init();
+
+        vm.updateWidget = function(widget) {
+            WidgetService.updateWidget(widget);
+            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/");
+        }
+
+        vm.deleteWidget = function(widgetId) {
+            WidgetService.deleteWidget(widgetId);
+            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/");
+        } 
 
         function getSafeHtml(widget) {
             return $sce.trustAsHtml(widget.text);

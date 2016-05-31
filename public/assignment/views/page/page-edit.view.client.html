@@ -12,7 +12,7 @@
                 Edit Page
             </div>
             <p class="navbar-text pull-right">
-                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link">
+                <a ng-click="model.updatePage(model.pageId, vm.page)" class="navbar-link">
                   <span class="glyphicon glyphicon-ok">
                   </span>
                 </a>
@@ -29,7 +29,6 @@
                 <input type="text"
                        class="form-control"
                        id="website-name"
-                       value="Blog Post"
                        placeholder="Google"
                        ng-model="model.page.name">
             </div>
@@ -39,12 +38,12 @@
                        class="form-control"
                        id="website-name"
                        placeholder="Page Title"
-                       ng-model="mode.page.title">
+                       ng-model="model.page.title">
             </div>
         </form>
 
-        <a class="btn btn-danger  btn-block"
-           href="page-list.html">Delete</a>
+        <a class="btn btn-danger btn-block"
+           ng-click="model.deletePage(model.pageId)">Delete</a>
     </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
@@ -57,7 +56,7 @@
             <div class="col-xs-3 text-center">
             </div>
             <div class="col-xs-3 text-center">
-                <a href="/assignment/user/profile.html">
+                <a href="#/profile/{{model.userId}}">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>

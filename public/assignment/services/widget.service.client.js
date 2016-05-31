@@ -53,13 +53,14 @@
             return _.find(widgets, function(widget){ return widget._id == widgetId; });
         }
 
-        function updateWidget(widgetId, $widget) {
-            var widget = _.find(widgets, function(widget){ return widget._id == widgetId; });
-            widget.name = $widget.name;
+        function updateWidget($widget) {
+            var widget = _.find(widgets, function(widget){ return widget._id == $widget._id; });
+            widget = $widget;
         }
 
         function deleteWidget(widgetId) {
-            _.reject(widgets, function(widget){ return widget._id == widgetId })
+            widgets = _.reject(widgets, function(widget){ return widget._id == widgetId });
+            console.log(widgetId);
         }
     }
 })();
