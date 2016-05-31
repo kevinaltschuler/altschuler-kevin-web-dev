@@ -1,30 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="./../../css/styles.css" rel="stylesheet"/>
-</head>
-<body>
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="page-list.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link">
                   <span class="glyphicon glyphicon-chevron-left">
                   </span>
                 </a>
             </p>
-            <a class="navbar-brand" href="#">
+            <div class="navbar-brand">
                 Edit Page
-            </a>
+            </div>
             <p class="navbar-text pull-right">
-                <a href="page-list.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link">
                   <span class="glyphicon glyphicon-ok">
                   </span>
                 </a>
@@ -42,14 +30,16 @@
                        class="form-control"
                        id="website-name"
                        value="Blog Post"
-                       placeholder="Google">
+                       placeholder="Google"
+                       ng-model="model.page.name">
             </div>
             <div class="form-group">
                 <label for="website-description">Title</label>
                 <input type="text"
                        class="form-control"
                        id="website-name"
-                       placeholder="Page Title">
+                       placeholder="Page Title"
+                       ng-model="mode.page.title">
             </div>
         </form>
 
@@ -74,6 +64,3 @@
         </div>
     </div>
 </nav>
-
-</body>
-</html>
