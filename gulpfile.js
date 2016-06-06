@@ -25,8 +25,8 @@ gulp.task('browserSync', function() {
       baseDir: './public'
     },
   })
-})
+});
 
 gulp.task('watch', ['browserSync', 'less'],  function(){
-  gulp.watch('./public/**/less/**/*.less', ['less']); 
-})
+  gulp.watch('./public/**/less/**/*.less', ['less']);
+});

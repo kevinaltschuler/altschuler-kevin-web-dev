@@ -22,7 +22,7 @@
     </div>
 </nav>
 
-    <div class="container">
+    <div class="container main-container">
 
         <div ng-switch="model.widget.widgetType">
             <div ng-switch-when="HEADER" ng-switch="widget.size">
@@ -85,16 +85,19 @@
                            value="100%"
                            ng-model="model.widget.width">
                 </div>
-                <div class="form-group">
-                    <label for="website-description">Upload</label>
-                    <input type="file"
-                           class="form-control"
-                           id="website-name"
-                           placeholder="Page Title">
-                </div>
-                <a class="btn btn-primary btn-block"
-                  href="widget-list.html">Upload Image</a>
               </form>
+              <form action="/api/upload"  method="post" enctype="multipart/form-data">
+                  <input  name="myFile"   type="file" class="form-control"/>
+                  <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
+                  <input  name="widgetId" value="{{model.widget._id}}"   style="display: none"/>
+                  <input  name="userId" value="{{model.userId}}"   style="display: none"/>
+                  <input  name="websiteId" value="{{model.websiteId}}"   style="display: none"/>
+                  <input  name="pageId" value="{{model.pageId}}"   style="display: none"/>
+                  <button type="submit"   class="btn btn-block btn-primary">Upload Image</button>
+              </form>
+              <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}/flickr">
+                 <button type="submit" class="btn btn-block btn-primary">Flickr Search</button>
+              </a>
             </div>
             <div ng-switch-when="YOUTUBE">
                 <form>
