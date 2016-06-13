@@ -1,7 +1,7 @@
 module.exports = function() {
 
     var mongoose = require('mongoose');
-    mongoose.createConnection('mongodb://localhost/cs4550summer1');
+    mongoose.connect('mongodb://localhost/cs4550summer1');
     
     var pageModel = require("./page/page.model.server.js")();
     var userModel = require("./user/user.model.server.js")();
