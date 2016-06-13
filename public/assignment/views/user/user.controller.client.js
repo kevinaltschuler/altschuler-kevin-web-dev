@@ -37,7 +37,7 @@
                 .findUserByUsernameAndPassword(username, password)
                 .then(function(response){
                     var user = response.data;
-                    if(user._id) {
+                    if(user && user._id) {
                         $location.url("/profile/" + user._id);
                     } else {
                         vm.error = "User not found";
@@ -46,11 +46,10 @@
         }
 
         vm.register = function(username, password) {
-            var id = (new Date()).getTime()+"";
             UserService
-                .createUser({username: username, password: password, _id: id})
+                .createUser(username, password)
                 .then(function(res) {
-                   $location.url("/profile/"+id); 
+                   $location.url("/profile/"+res.data._id); 
                 });
         }
 

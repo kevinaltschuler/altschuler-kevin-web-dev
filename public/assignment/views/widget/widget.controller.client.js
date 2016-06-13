@@ -20,6 +20,7 @@
             WidgetService
                 .findWidgetsByPageId(pageId)
                 .then(function(res) {
+                    console.log(res.data);
                     vm.widgets = res.data;
                 });
 
@@ -75,9 +76,8 @@
         }
 
         vm.createWidget = function(pageId, type) {
-            var wgId = (new Date()).getTime()+"";
             WidgetService
-                .createWidget(pageId, { "_id": wgId, "widgetType": type, "pageId": pageId})
+                .createWidget(pageId, {"widgetType": type, "pageId": pageId})
                 .then(function(res) {
                     $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+res.data._id);
                 });

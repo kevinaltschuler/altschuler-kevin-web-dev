@@ -64,7 +64,7 @@
         }
 
         vm.createPage = function(websiteId, name) {
-            var page = {name: name, _id: (new Date()).getTime()+""}
+            var page = {_website: websiteId, name: name};
             PageService
                 .createPage(websiteId, page)
                 .then(function(res){
