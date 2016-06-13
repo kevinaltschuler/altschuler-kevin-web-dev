@@ -133,7 +133,7 @@ module.exports = function(app, models) {
                     res.send(400);
                 }
             );
-	},
+	}
 
     function reorderWidget(pageId, start, end, res) {
         widgetModel
