@@ -1,16 +1,32 @@
 
   <div class="container main-container">
       <h1>Login</h1>
-      <input type="text"
-             class="form-control"
-             placeholder="username"
-             ng-model="username"/>
-      <input type="password"
-             class="form-control"
-             placeholder="password"
-             ng-model="password"/>
-      <a class="btn btn-primary btn-block"
-         ng-click="model.login(username, password)">Login</a>
+      <form name="loginForm" novalidate>
+        <span class="alert alert-danger" ng-show="loginForm.$submitted && loginForm.username.$invalid">
+          username required
+        </span>
+        <input name="username"
+               type="text"
+               class="form-control"
+               placeholder="username"
+               ng-model="username" required/>
+        <span class="alert alert-danger" ng-show="loginForm.$submitted && loginForm.password.$invalid">
+          password required
+        </span>
+        <input name="password"
+               type="password"
+               class="form-control"
+               placeholder="password"
+               ng-model="password" required/>
+        <button type="submit" 
+           ng-click="model.login(username, password)" class="btn btn-primary btn-block">Login</button>
+      </form>
+
+      <a href="/auth/facebook" class="btn btn-primary btn-block">
+          <span class="fa fa-facebook"></span>
+          Facebook
+      </a>
       <a class="btn btn-success btn-block"
          href="#/register">Register</a>
+
   </div>

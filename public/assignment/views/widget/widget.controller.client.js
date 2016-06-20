@@ -108,11 +108,12 @@
         init();
 
         vm.updateWidget = function(widget) {
-            WidgetService
-                .updateWidget(widget)
-                .then(function(res) {
-                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/");
-                });
+            if(widget.name)
+                WidgetService
+                    .updateWidget(widget)
+                    .then(function(res) {
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/");
+                    });
         }
 
         vm.deleteWidget = function(widgetId) {

@@ -13,10 +13,10 @@
                 New Page
             </div>
             <p class="navbar-text pull-right">
-                <a ng-click="model.createPage(model.websiteId, page.name)" class="navbar-link">
+                <button form="pageForm" type="submit" ng-click="model.createPage(model.websiteId, page.name)" class="navbar-link">
                   <span class="glyphicon glyphicon-ok">
                   </span>
-                </a>
+                </button>
             </p>
         </div>
     </div>
@@ -24,10 +24,13 @@
 
     <div class="container main-container">
 
-        <form>
+        <form id="pageForm" name="pageForm" novalidate>
+            <span class="alert alert-danger" ng-show="pageForm.$submitted && pageForm.name.$invalid">
+                name required
+            </span>
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="page name" ng-model="page.name">
+                <input name="name" type="text" class="form-control" id="name" placeholder="page name" ng-model="page.name" required>
             </div>
             <div class="form-group">
                 <label for="title">Title</label>

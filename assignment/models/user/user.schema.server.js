@@ -17,7 +17,11 @@ module.exports = function() {
             ref: 'Website'
         }],
         dateCreated: {type: Date, default: Date.now},
-        dateUpdated: Date
+        dateUpdated: Date,
+        facebook: {
+            id:    String,
+            token: String
+        }
     });
 
     return UserSchema;

@@ -46,10 +46,10 @@ module.exports = function(app, models) {
                 }
             )
     }
-    function findWebsiteById(req, res){
+    function findWebsiteById(req, res) {
         var id = req.params.websiteId;
         websiteModel
-            .findWebsiteById(websiteId)
+            .findWebsiteById(id)
             .then(
                 function(site) {
                     res.json(site);

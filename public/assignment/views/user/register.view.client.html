@@ -1,19 +1,33 @@
 
     <div class="container main-container">
         <h1>Register</h1>
-        <input type="text"
-               class="form-control"
-               placeholder="username"
-               ng-model="username"/>
-        <input type="password"
-               class="form-control"
-               placeholder="password"
-               ng-model="password"/>
-        <input type="password"
-               class="form-control"
-               placeholder="very password"/>
-        <a class="btn btn-primary btn-block"
-           ng-click="model.register(username, password)">Register</a>
+        <form name="regForm" novalidate>
+          <span class="alert alert-danger" ng-show="regForm.$submitted && regForm.username.$invalid">
+            username required
+          </span>
+          <input name="username"
+                 type="text"
+                 class="form-control"
+                 placeholder="username"
+                 ng-model="username" required/>
+          <span class="alert alert-danger" ng-show="regForm.$submitted && regForm.password.$invalid">
+            password required
+          </span>
+          <input name="password"
+                 type="password"
+                 class="form-control"
+                 placeholder="password"
+                 ng-model="password" required/>
+          <span class="alert alert-danger" ng-show="regForm.$submitted && (regForm.very-password.$invalid || regForm.password !== regForm.very-password)">
+            passwords must match
+          </span>
+          <input name="very-password"
+                 type="password"
+                 class="form-control"
+                 placeholder="very password" require/>
+          <button type="submit" class="btn btn-primary btn-block"
+             ng-click="model.register(username, password)">Register</button>
+        </form>
         <a class="btn btn-danger  btn-block"
            href="#/login">Cancel</a>
     </div>

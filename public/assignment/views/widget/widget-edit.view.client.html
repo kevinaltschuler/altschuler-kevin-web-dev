@@ -13,10 +13,10 @@
                 Widget Edit
             </a>
             <p class="navbar-text pull-right">
-                <a ng-click="model.updateWidget(model.widget)" class="navbar-link">
+                <button form="widgetEditForm" type="submit" ng-click="model.updateWidget(model.widget)" class="navbar-link">
                   <span class="glyphicon glyphicon-ok">
                   </span>
-                </a>
+                </button>
             </p>
         </div>
     </div>
@@ -26,15 +26,19 @@
 
         <div ng-switch="model.widget.widgetType">
             <div ng-switch-when="HEADER" ng-switch="widget.size">
-                <form>
+                <form id="widgetEditForm" name="widgetEditForm" novalidate>
                   <div class="form-group">
+                      <span class="alert alert-danger" ng-show="widgetEditForm.$submitted && widgetEditForm.name.$invalid">
+                        name required
+                      </span>
                       <label for="widget-name">Name</label>
                       <input type="text"
+                             name="name"
                              class="form-control"
                              id="website-name"
                              value="Blog Post"
                              placeholder="Google"
-                             ng-model="model.widget.name">
+                             ng-model="model.widget.name" required>
                   </div>
                   <div class="form-group">
                       <label for="widget-description">Title</label>
@@ -55,13 +59,17 @@
               </form>
             </div>
             <div ng-switch-when="IMAGE">
-              <form>
+              <form id="widgetEditForm" name="widgetEditForm" novalidate>
                 <div class="form-group">
+                    <span class="alert alert-danger" ng-show="widgetEditForm.$submitted && widgetEditForm.name.$invalid">
+                        name required
+                    </span>
                     <label for="website-name">Name</label>
                     <input type="text"
+                           name="name"
                            class="form-control"
                            id="website-name"
-                           ng-model="model.widget.name">
+                           ng-model="model.widget.name" required>
                 </div>
                 <div class="form-group">
                     <label for="website-description">Text</label>
@@ -100,13 +108,17 @@
               </a>
             </div>
             <div ng-switch-when="YOUTUBE">
-                <form>
+                <form id="widgetEditForm" name="widgetEditForm" novalidate>
                   <div class="form-group">
+                      <span class="alert alert-danger" ng-show="widgetEditForm.$submitted && widgetEditForm.name.$invalid">
+                          name required
+                      </span>
                       <label for="website-name">Name</label>
-                      <input type="text"
+                      <input name="name"
+                             type="text"
                              class="form-control"
                              id="website-name"
-                             ng-model="model.widget.name">
+                             ng-model="model.widget.name" required>
                   </div>
                   <div class="form-group">
                       <label for="website-description">Text</label>

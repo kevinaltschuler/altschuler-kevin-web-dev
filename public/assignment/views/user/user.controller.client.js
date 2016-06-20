@@ -4,18 +4,14 @@
         .controller("LoginController", LoginController)
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($routeParams, UserService) {
+    function ProfileController($routeParams, UserService, $rootScope) {
         var vm = this;
         vm.updateUser = updateUser;
 
         var id = $routeParams.id;
 
         function init() {
-            UserService
-                .findUserById(id)
-                .then(function(res) {
-                    vm.user = res.data;
-                });
+            vm.user = $rootScope.currentUser;
         }
         init();
 
@@ -29,14 +25,16 @@
         }
     }
 
-    function LoginController($location, UserService) {
+    function LoginController($location, UserService, $rootScope) {
         var vm = this;
 
         vm.login = function(username, password) {
             UserService
-                .findUserByUsernameAndPassword(username, password)
+                .login({username: username, password: password})
                 .then(function(response){
                     var user = response.data;
+                    $rootScope.currentUser = user;
+                    console.log(user);
                     if(user && user._id) {
                         $location.url("/profile/" + user._id);
                     } else {
@@ -47,10 +45,25 @@
 
         vm.register = function(username, password) {
             UserService
-                .createUser(username, password)
-                .then(function(res) {
-                   $location.url("/profile/"+res.data._id); 
-                });
+            .register({username: username, password: password})
+            .then(
+                function(response) {
+                    var user = response.data;
+                    $rootScope.currentUser = user;
+                    $location.url("/user/"+user._id);
+                }
+            );
+        }
+
+        vm.logout = function() {
+            UserService
+                .logout()
+                .then(
+                    function(response) {
+                        $rootScope.currentUser = null;
+                        $location.url("/");
+                    }
+                );
         }
 
     }

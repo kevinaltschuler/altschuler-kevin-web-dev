@@ -13,10 +13,10 @@
                 Edit Website
             </div>
             <p class="navbar-text pull-right">
-                <a ng-click="model.updateWebsite(model.website._id, model.website)" class="navbar-link">
+                <button form="webEditForm" type="submit" ng-click="model.updateWebsite(model.website._id, model.website)" class="navbar-link">
                   <span class="glyphicon glyphicon-ok">
                   </span>
-                </a>
+                </button>
             </p>
         </div>
     </div>
@@ -24,14 +24,18 @@
 
     <div class="container main-container">
 
-        <form>
+        <form id="webEditForm" name="webEditForm" novalidate>
+            <span class="alert alert-danger" ng-show="webEditForm.$submitted && webEditForm.name.$invalid">
+                name required
+            </span>
             <div class="form-group">
                 <label for="website-name">Website Name</label>
-                <input type="text"
+                <input name="name"
+                       type="text"
                        class="form-control"
                        id="website-name"
                        placeholder="Google"
-                       ng-model="model.website.name"/>
+                       ng-model="model.website.name" required/>
             </div>
             <div class="form-group">
                 <label for="website-description">Website Description</label>

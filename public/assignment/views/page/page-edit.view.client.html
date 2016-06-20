@@ -12,10 +12,10 @@
                 Edit Page
             </div>
             <p class="navbar-text pull-right">
-                <a ng-click="model.updatePage(model.pageId, vm.page)" class="navbar-link">
+                <button form="pageEditForm" type="submit" ng-click="model.updatePage(model.pageId, model.page)" class="navbar-link">
                   <span class="glyphicon glyphicon-ok">
                   </span>
-                </a>
+                </button>
             </p>
         </div>
     </div>
@@ -23,14 +23,18 @@
 
     <div class="container main-container">
 
-        <form>
+        <form id="pageEditForm" name="pageEditForm" novalidate>
+            <span class="alert alert-danger" ng-show="pageEditForm.$submitted && pageEditForm.name.$invalid">
+                name required
+            </span>
             <div class="form-group">
                 <label for="website-name">Name</label>
-                <input type="text"
+                <input name="name"
+                       type="text"
                        class="form-control"
                        id="website-name"
                        placeholder="Google"
-                       ng-model="model.page.name">
+                       ng-model="model.page.name" required>
             </div>
             <div class="form-group">
                 <label for="website-description">Title</label>

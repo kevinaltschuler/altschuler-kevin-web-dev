@@ -24,7 +24,7 @@ module.exports = function() {
     }
     
     function findPageById(pageId) {
-        return Page.findById(PageId);
+        return Page.findById(pageId);
     }
     
     function updatePage(id, newPage) {

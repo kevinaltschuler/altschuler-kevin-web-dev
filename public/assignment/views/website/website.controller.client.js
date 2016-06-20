@@ -11,17 +11,18 @@
         vm.createWebsite = createWebsite;
 
         function createWebsite(name, description) {
-            WebsiteService
-                .createWebsite(vm.userId, name, description)
-                .then(function(res) {
-                    console.log(res);
-                    var newWebsite = res.data;
-                    if(newWebsite) {
-                        $location.url("/user/"+vm.userId+"/website");
-                    } else {
-                        vm.error = "Unable to create website";
-                    }
-                });
+            if(name)
+                WebsiteService
+                    .createWebsite(vm.userId, name, description)
+                    .then(function(res) {
+                        console.log(res);
+                        var newWebsite = res.data;
+                        if(newWebsite) {
+                            $location.url("/user/"+vm.userId+"/website");
+                        } else {
+                            vm.error = "Unable to create website";
+                        }
+                    });
         }
     }
 
@@ -58,11 +59,12 @@
         init();
 
         vm.updateWebsite = function(websiteId, website) {
-            WebsiteService
-                .updateWebsite(websiteId, website)
-                .then(function(res) {
-                    $location.url("/user/"+vm.userId+"/website");
-                });
+            if(website.name)
+                WebsiteService
+                    .updateWebsite(websiteId, website)
+                    .then(function(res) {
+                        $location.url("/user/"+vm.userId+"/website");
+                    });
         }
 
         vm.deleteWebsite = function(websiteId) {
